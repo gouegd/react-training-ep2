@@ -1,10 +1,12 @@
 {
-  "name": "react-training-ep1",
+  "name": "react-training-ep2",
   "version": "1.0.0",
   "author": "gouegd",
   "private": false,
+  "repository": "https://github.com/gouegd/react-training-ep2",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "react-scripts": "0.8.5"
   },
   "dependencies": {
     "react": "~15.4.1",
