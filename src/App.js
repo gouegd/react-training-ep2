@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Item from './Item';
 
 import './App.css';
@@ -23,8 +25,15 @@ class App extends Component {
   }
 
   renderItems() {
-    return this.state.items.map(({name, image}) =>
-      <Item key={image} name={name} image={image} hide={ (i) => this.hide(i) } />
+    const { items } = this.state;
+    const { category } = this.props.images;
+    return (
+      <div>
+        <h3>{ category ? `Here are some ${category}` : 'No category chosen'}</h3>
+        { items.map(({name, image}) =>
+          <Item key={image} name={name} image={image} hide={ (i) => this.hide(i) } />
+        )}
+      </div>
     );
   }
 
@@ -51,4 +60,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ images }) => ({ images })
+
+export default connect(mapStateToProps)(App);
