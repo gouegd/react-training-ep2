@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Item from './Item';
-import { setCategory } from './actions/imageActions';
+import { getCategory } from './actions/imageActions';
 
 import './App.css';
 
@@ -56,7 +56,7 @@ class App extends Component {
         <p className="App-intro">
           To keep going, edit <code>src/*</code> and save to reload.
         </p>
-        <button onClick={ () => this.props.actions.setCategory('pukekos') }>I want pukekos</button>
+        <button onClick={ () => this.props.actions.getCategory('pukekos') }>I want pukekos</button>
         { this.renderItems() }
       </div>
     );
@@ -66,7 +66,7 @@ class App extends Component {
 const mapStateToProps = ({ images }) => ({ images })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ setCategory }, dispatch)
+  actions: bindActionCreators({ getCategory }, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

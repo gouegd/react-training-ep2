@@ -2,8 +2,15 @@ const setCategory = (category) => ({
   // eventually we should put action types in a file and import them.
   // let's keep this simple for now.
   type: 'IMAGES_CATEGORY_SET',
-  payload: new Promise((resolve) => setTimeout(() => resolve(category), 2000))
+  payload: category,
 });
+
+const getCategory = (category) => dispatch => {
+  setTimeout(
+    () => dispatch(setCategory(category)),
+    1000
+  );
+}
 
 /**
  * Using the redux-action helpers, it would be:
@@ -12,4 +19,4 @@ const setCategory = (category) => ({
  * const setCategory = actionCreatorFactory('IMAGES_CATEGORY_SET');
  */
 
-export { setCategory };
+export { getCategory };
