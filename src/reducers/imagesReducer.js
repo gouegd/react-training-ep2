@@ -1,8 +1,10 @@
 import { handleActions } from 'redux-actions';
 
 function categorySet(state, action) {
-  // TODO modify this !
-  return state;
+  return {
+    ...state,
+    category: action.payload,
+  };
 }
 
 export default handleActions({
