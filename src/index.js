@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { compose, createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import promiseMiddleware from 'redux-promise';
 
 import App from './App';
 import rootReducer from './reducers/index';
@@ -15,6 +16,9 @@ const initialState = undefined;
 const maybeDevTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 
 const enhancer = compose(
+  applyMiddleware(
+    promiseMiddleware
+  ),
   maybeDevTools
 );
 

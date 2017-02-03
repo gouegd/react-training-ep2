@@ -2,7 +2,7 @@ const setCategory = (category) => ({
   // eventually we should put action types in a file and import them.
   // let's keep this simple for now.
   type: 'IMAGES_CATEGORY_SET',
-  payload: category
+  payload: new Promise((resolve) => setTimeout(() => resolve(category), 2000))
 });
 
 /**
