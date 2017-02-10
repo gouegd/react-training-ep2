@@ -1,5 +1,5 @@
-Simple React app based on FB's create-react-app.
-Used as an exercise to learn React basics.
+Simple React+Redux app based on FB's create-react-app.
+Used as an exercise to learn Redux basics.
 Amazing design not included.
 
 ```
