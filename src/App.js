@@ -3,32 +3,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Item from './Item';
-import { getCategory } from './actions/imageActions';
+import { setCategory, receiveImages } from './actions/imageActions';
 
 import './App.css';
 
+const onCategoryChange = (props, category) => {
+  props.actions.setCategory(category);
+  props.actions.receiveImages(category);
+}
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // init state with an items array
-    this.state = {
-      items: []
-    };
-  }
-
   // before mounting grab silly cat pictures and eventually put relevant info in the state's items array
   componentWillMount() {
-    fetch('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC')
-    .then(res => res.json())
-    .then(json => {
-      this.setState({ items: json.data.map(d => ({name: d.slug, image: d.images.fixed_height.url})) });
-    });
+    this.props.actions.receiveImages(this.props.images.category);
   }
 
   renderItems() {
-    const { items } = this.state;
-    const { category } = this.props.images;
+    const { category, items = [] } = this.props.images;
     return (
       <div>
         <h3>{ category ? `Here are some ${category}` : 'No category chosen'}</h3>
@@ -56,7 +47,7 @@ class App extends Component {
         <p className="App-intro">
           To keep going, edit <code>src/*</code> and save to reload.
         </p>
-        <button onClick={ () => this.props.actions.getCategory('pukekos') }>I want pukekos</button>
+        <button onClick={ () => onCategoryChange(this.props, 'pikachu') }>I want pukekos</button>
         { this.renderItems() }
       </div>
     );
@@ -66,7 +57,7 @@ class App extends Component {
 const mapStateToProps = ({ images }) => ({ images })
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ getCategory }, dispatch)
+  actions: bindActionCreators({ setCategory, receiveImages }, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
